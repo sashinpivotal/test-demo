@@ -33,10 +33,32 @@ class ComputerTest {
     }
 
     @Test
+    @DisplayName("Test add method")
     void add_method_should_return_added_value_given_two_int_numbers() {
         System.out.println("test1");
         int result = computer.add(2, 4);
-        Assertions.assertEquals(6, result);
+        Assertions.assertEquals(6, result,
+                "add test failed");
+    }
+
+    @Test
+    @DisplayName("Test add method using AssertJ package")
+    void add_method_should_return_added_value_given_two_int_numbers2() {
+        int result = computer.add(2, 4);
+        Assertions.assertEquals(6, result);  // assertion using JUnit 5 assertion package
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void compare_equal_vs_same1() {
+        Computer computer1 = new Computer("apple");
+        Computer computer2 = new Computer("apple");
+        Assertions.assertEquals(computer1, computer2);
+    }
+
+    @Test
+    void use_assertTrue() {
+        Assertions.assertTrue( 4> 2);
     }
 
     @Test
