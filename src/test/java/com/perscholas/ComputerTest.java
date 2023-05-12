@@ -52,9 +52,10 @@ class ComputerTest {
 
     @Test
     void divide_should_thrown_ArithmeticException_when_y_is_0() {
-        Assertions.assertThrows(ArithmeticException.class, ()-> {
-            computer.divide(4, 0);
-        });
+        Assertions.assertThrows(ArithmeticException.class,
+                () -> {
+                    computer.divide(4, 0);
+                });
     }
 
     @Test
