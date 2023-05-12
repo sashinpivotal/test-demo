@@ -102,15 +102,19 @@ class ComputerTest {
         Assertions.assertEquals(20, result);
     }
 
-    // Write testing code for subtract method
     @DisplayName("parameterized test")
     @ParameterizedTest(name = "{0} + {1} = {2}")
-    @CsvSource({"0,    1,   1", "1,    2,   3",
-            "49,  51, 100", "1,  100, 101"})
-    void add(int first, int second, int expectedResult) {
+    @CsvSource({
+            "0,  1,   1",
+            "1,  2,   3",
+            "49, 51, 100",
+            "1, 100, 101"})
+    void add_with_multiple_test_data(int first, int second, int expectedResult) {
         Computer calculator = new Computer();
         assertEquals(expectedResult, calculator.add(first, second),
-                () -> first + " + " + second + " should equal " + expectedResult);
+                () -> first + " + " + second
+                        + " should equal "
+                        + expectedResult);
     }
 
 }
