@@ -4,6 +4,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ComputerTest {
@@ -42,6 +45,37 @@ class ComputerTest {
     }
 
     @Test
+    void divide_should_return_divided_value_when_y_is_not_0() {
+        int actual = computer.divide(10, 2);
+        org.assertj.core.api.Assertions.assertThat(actual).isEqualTo(5);
+    }
+
+    @Test
+    void divide_should_thrown_ArithmeticException_when_y_is_0() {
+        Assertions.assertThrows(ArithmeticException.class, ()-> {
+            computer.divide(4, 0);
+        });
+    }
+
+    @Test
+    void exception_handling_via_JUnit_5_assertions() {
+        Assertions.assertThrows(IndexOutOfBoundsException.class,
+                () -> {
+                    List<String> list = Arrays.asList("String one", "String two");
+                    list.get(2);
+                });
+    }
+
+    @Test
+    void exception_handling_via_assertJ() {
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> {
+                    List<String> list = Arrays.asList("String one", "String two");
+                    list.get(2);
+                }).isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index 2 out of bounds for length 2");
+    }
+
+    @Test
     @DisplayName("Test add method using AssertJ package")
     void add_method_should_return_added_value_given_two_int_numbers2() {
         int result = computer.add(2, 4);
@@ -58,7 +92,7 @@ class ComputerTest {
 
     @Test
     void use_assertTrue() {
-        Assertions.assertTrue( 4> 2);
+        Assertions.assertTrue(4 > 2);
     }
 
     @Test
